@@ -1,0 +1,15 @@
+# 003-persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dev-khaam-purtainet-com-mono-pv
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: dev-khaam-purtainet-com-mono-nfs-sc
+  nfs:
+    path: "/exports/k8s_dev_khaam-purtainet-com-mono"
+    server: "192.168.10.46"
