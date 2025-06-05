@@ -1,0 +1,12 @@
+# 002-storage-class.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: dev-khaam-purtainet-com-mono-nfs-sc
+provisioner: nfs.csi.k8s.io
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  server: "192.168.10.46"
+  share: "/exports/k8s_dev_khaam-purtainet-com-mono"
