@@ -1,0 +1,14 @@
+# 004-persistent-volume-claim.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dev-khaam-purtainet-com-mono-pvc
+  namespace: dev-purtainet-com-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 50Gi
+  storageClassName: dev-khaam-purtainet-com-mono-nfs-sc
+  volumeName: dev-khaam-purtainet-com-mono-pv
