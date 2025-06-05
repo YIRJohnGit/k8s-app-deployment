@@ -1,0 +1,63 @@
+# 007-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: khaam-purtainet-com-mono-service
+  namespace: dev-purtainet-com-ns
+spec:
+  type: LoadBalancer
+  selector:
+    app: khaam-purtainet-com-mono
+  ports:
+  - protocol: TCP
+    port: 40078
+    targetPort: 80
+    name: http
+  - protocol: TCP
+    port: 40079
+    targetPort: 22
+    name: ssh
+  - protocol: TCP
+    port: 40080
+    targetPort: 21
+    name: ftp
+  - protocol: TCP
+    port: 21301
+    targetPort: 21301
+    name: pasv-21301
+  - protocol: TCP
+    port: 21302
+    targetPort: 21302
+    name: pasv-21302
+  - protocol: TCP
+    port: 21303
+    targetPort: 21303
+    name: pasv-21303
+  - protocol: TCP
+    port: 21304
+    targetPort: 21304
+    name: pasv-21304
+  - protocol: TCP
+    port: 21305
+    targetPort: 21305
+    name: pasv-21305
+  - protocol: TCP
+    port: 21306
+    targetPort: 21306
+    name: pasv-21306
+  - protocol: TCP
+    port: 21307
+    targetPort: 21307
+    name: pasv-21307
+  - protocol: TCP
+    port: 21308
+    targetPort: 21308
+    name: pasv-21308
+  - protocol: TCP
+    port: 21309
+    targetPort: 21309
+    name: pasv-21309
+  - protocol: TCP
+    port: 21310
+    targetPort: 21310
+    name: pasv-21310
