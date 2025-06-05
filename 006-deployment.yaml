@@ -1,0 +1,75 @@
+# 006-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khaam-purtainet-com-mono
+  namespace: dev-purtainet-com-ns
+  labels:
+    app: khaam-purtainet-com-mono
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: khaam-purtainet-com-mono
+  template:
+    metadata:
+      labels:
+        app: khaam-purtainet-com-mono
+    spec:
+      imagePullSecrets:
+        - name: dev-khaam-purtainet-com-mono-drs
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: khaam-purtainet-com-mono
+        image: docker.mnserviceproviders.com/ci3-khaam:1.0.1
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 22
+          name: ssh
+        - containerPort: 21
+          name: ftp
+        - containerPort: 21301
+          name: pasv-21301
+        - containerPort: 21302
+          name: pasv-21302
+        - containerPort: 21303
+          name: pasv-21303
+        - containerPort: 21304
+          name: pasv-21304
+        - containerPort: 21305
+          name: pasv-21305
+        - containerPort: 21306
+          name: pasv-21306
+        - containerPort: 21307
+          name: pasv-21307
+        - containerPort: 21308
+          name: pasv-21308
+        - containerPort: 21309
+          name: pasv-21309
+        - containerPort: 21310
+          name: pasv-21310
+        volumeMounts:
+        - name: shared-pvc
+          mountPath: /source_code
+          subPath: source_code
+        - name: shared-pvc
+          mountPath: /attachments
+          subPath: attachments
+        - name: shared-pvc
+          mountPath: /backup
+          subPath: backup
+        - name: shared-pvc
+          mountPath: /var/log
+          subPath: log
+        - name: shared-pvc
+          mountPath: /etc/vsftpd
+          subPath: vsftpd
+        - name: shared-pvc
+          mountPath: /etc/apache2/sites-enabled
+          subPath: apache2
+      volumes:
+      - name: shared-pvc
+        persistentVolumeClaim:
+          claimName: dev-khaam-purtainet-com-mono-pvc
